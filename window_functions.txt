@@ -25,8 +25,13 @@ depname  | empno | salary |          avg
 
 The first three output columns come directly from the table empsalary, and there is one output row for each row in the table. 
 The fourth column represents an average taken across all the table rows that have the same depname value as the current row. 
+
 (This actually is the same function as the regular avg aggregate function, but the OVER clause causes it to be treated as a window function and computed across an appropriate set of rows.)
 
-A window function call always contains an OVER clause directly following the window function's name and argument(s). This is what syntactically distinguishes it from a regular function or aggregate function. The OVER clause determines exactly how the rows of the query are split up for processing by the window function. The PARTITION BY list within OVER specifies dividing the rows into groups, or partitions, that share the same values of the PARTITION BY expression(s). For each row, the window function is computed across the rows that fall into the same partition as the current row.
-
-You can also control the order in which rows are processed by window functions using ORDER BY within OVER. (The window ORDER BY does not even have to match the order in which the rows are output.) Here is an example:
+A window function call always contains an OVER clause directly following the window function's name and argument(s). 
+This is what syntactically distinguishes it from a regular function or aggregate function.
+ The OVER clause determines exactly how the rows of the query are split up for processing by the window function. 
+ The PARTITION BY list within OVER specifies dividing the rows into groups, or partitions, that share the same values of the PARTITION BY expression(s). 
+ For each row, the window function is computed across the rows that fall into the same partition as the current row.
+You can also control the order in which rows are processed by window functions using ORDER BY within OVER.
+ (The window ORDER BY does not even have to match the order in which the rows are output.) Here is an example:
