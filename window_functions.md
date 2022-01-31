@@ -23,3 +23,16 @@ The PARTITION BY list within OVER specifies dividing the rows into groups, or pa
 
 For each row, the window function is computed across the rows that fall into the same partition as the current row. You
 can also control the order in which rows are processed by window functions using ORDER BY within OVER.
+
+#### ROW_NUMBER:
+The ROW_NUMBER() is a window function that assigns a sequential integer number to each row in the query’s result set.
+```
+ROW_NUMBER() OVER (
+    [PARTITION BY expr1, expr2,...]
+    ORDER BY expr1 [ASC | DESC], expr2,...
+)
+```
+
+First, the PARTITION BY clause divides the result set returned from the FROM clause into partitions. The PARTITION BY clause is optional. If you omit it, the whole result set is treated as a single partition.
+Then, the ORDER BY clause sorts the rows in each partition. Because the ROW_NUMBER() is an order sensitive function, the ORDER BY clause is required.
+Finally, each row in each partition is assigned a sequential integer number called a row number. 
