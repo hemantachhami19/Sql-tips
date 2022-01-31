@@ -24,7 +24,7 @@ The PARTITION BY list within OVER specifies dividing the rows into groups, or pa
 For each row, the window function is computed across the rows that fall into the same partition as the current row. You
 can also control the order in which rows are processed by window functions using ORDER BY within OVER.
 
-#### ROW_NUMBER:
+### ROW_NUMBER:
 The ROW_NUMBER() is a window function that assigns a sequential integer number to each row in the query’s result set.
 ```
 ROW_NUMBER() OVER (
@@ -33,6 +33,31 @@ ROW_NUMBER() OVER (
 )
 ```
 
-First, the PARTITION BY clause divides the result set returned from the FROM clause into partitions. The PARTITION BY clause is optional. If you omit it, the whole result set is treated as a single partition.
-Then, the ORDER BY clause sorts the rows in each partition. Because the ROW_NUMBER() is an order sensitive function, the ORDER BY clause is required.
-Finally, each row in each partition is assigned a sequential integer number called a row number. 
+ROW_NUMBER() function to add sequential integer number to each row.
+
+```
+SELECT
+    ROW_NUMBER() OVER (
+            ORDER BY salary
+    ) row_num,
+    first_name,
+    last_name,
+    salary
+FROM
+    employees
+```
+
+| row\_num | first\_name | last\_name | salary |
+| :--- | :--- | :--- | :--- |
+| 1 | Karen | Colmenares | 2500.00 |
+| 2 | Guy | Himuro | 2600.00 |
+| 3 | Irene | Mikkilineni | 2700.00 |
+| 4 | Sigal | Tobias | 2800.00 |
+| 5 | Shelli | Baida | 2900.00 |
+| 6 | Alexander | Khoo | 3100.00 |
+| 7 | Britney | Everett | 3900.00 |
+| 8 | Sarah | Bell | 4000.00 |
+| 9 | Diana | Lorentz | 4200.00 |
+| 10 | Jennifer | Whalen | 4400.00 |
+
+
